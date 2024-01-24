@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import indesCss from "./index.css";
 
 const pizzaData = [
   {
@@ -48,20 +49,56 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <h1>Hello World!!!</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
+const style = {};
+function Header() {
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>our menu</h2>
+      <Pizza />
+    </main>
+  );
+}
+
+const Footer = () => {
+  const hour = new Date().getHours();
+  console.log(hour);
+
+  const openHour = 12;
+  const closeHour = 24;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+  // if (hour >= openHour && hour <= closeHour) alert("we are currently open");
+  // else alert("we are currently closed");
+
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We are currently open
+    </footer>
+  );
+  // return React.createElement("footer", null, "We are actualy open");
+};
 
 function Pizza() {
   return (
     <div>
       <img src={require("./p/spinaci.jpg")} />
-      <h1>Pizza Spinaci</h1>
+      <h3>Pizza Spinaci</h3>
       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
     </div>
   );
